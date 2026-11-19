@@ -1,0 +1,443 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#16111e"><meta name="description" content="Atelier Muse V6.2: yetişkin kadın karakter, ayrıntılı beden ve yüz, kıyafet, sahne, kilitler, koleksiyon ve görsel AI entegrasyonu.">
+<title>Atelier Muse V6.2 — AI Moda Karakter Stüdyosu</title>
+<style>
+:root{color-scheme:dark;--bg:#100e16;--panel:#201a2a;--raised:#292032;--raised2:#33263c;--line:#42364c;--text:#faf6fb;--muted:#c1b4c9;--subtle:#92859a;--pink:#ffa7c9;--violet:#d3b7ff;--good:#97ecc5;--radius:19px}
+*{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.55;background:radial-gradient(ellipse 65vw 40vh at 12% -12%,#593055 0%,transparent 78%),radial-gradient(ellipse 46vw 45vh at 93% 3%,#302351 0%,transparent 84%),var(--bg)}
+button,input,select,textarea{font:inherit}button{cursor:pointer}button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:2px solid var(--violet);outline-offset:2px}a{color:#ffc0dc}h1,h2,h3,p{margin-top:0}
+.app{max-width:1540px;margin:auto;padding:21px 22px 70px}.top{display:flex;justify-content:space-between;gap:18px;align-items:center;margin-bottom:19px}.brand{display:flex;align-items:center;gap:12px}.logo{height:48px;width:48px;border-radius:15px;background:linear-gradient(145deg,#e991be,#8969c6);display:grid;place-items:center;font-size:25px;color:#2f1935;box-shadow:0 10px 35px #b36b9b55}.brand-name{font-size:22px;font-weight:850;letter-spacing:-.7px}.smallcaps{font-size:10px;letter-spacing:2px;color:var(--pink);font-weight:800}.muted{color:var(--muted)}.tiny{font-size:11px}.pill{font-size:11px;color:#e6d8ea;background:#292133;border:1px solid var(--line);padding:8px 12px;border-radius:30px}.pill i{display:inline-block;background:var(--good);height:7px;width:7px;border-radius:50%;margin-right:6px}
+.hero{border:1px solid #734969;background:linear-gradient(115deg,#45283f,#262034 56%,#202036);border-radius:25px;padding:25px 29px;margin-bottom:18px;display:flex;justify-content:space-between;gap:15px}.hero h1{font-size:clamp(25px,3.3vw,42px);letter-spacing:-1.5px;line-height:1.12;margin:7px 0 9px;max-width:850px}.hero em{font-style:normal;color:#ffc0dc}.hero p{font-size:13px;color:#e4d5e4;margin:0;max-width:840px}.hero-right{min-width:120px;text-align:right;align-self:center}.hero-right b{font-size:35px;display:block}.hero-right span{font-size:11px;color:var(--muted)}
+.columns{display:grid;grid-template-columns:minmax(285px,340px) minmax(0,1fr);gap:18px;align-items:start}.sidebar{position:sticky;top:17px;display:grid;gap:13px;max-height:calc(100vh - 24px);overflow:auto;scrollbar-width:thin;padding-right:2px}.main{min-width:0}.card{border:1px solid var(--line);background:linear-gradient(145deg,#211a2a,#1d1825);border-radius:var(--radius);box-shadow:0 15px 45px #0002}.cardpad{padding:19px}.card h2{font-size:18px;letter-spacing:-.4px;margin:0 0 7px}.card h3{font-size:14px;margin:0 0 10px}.line{border:0;border-top:1px solid var(--line);margin:16px 0}.name{font-size:31px;font-weight:800;letter-spacing:-.8px}.statgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:13px 0}.stat{border:1px solid #47364d;background:var(--raised);border-radius:12px;padding:10px 8px}.stat small{display:block;color:var(--muted);font-size:10px}.stat strong{font-size:16px}.labelcaps{font-size:10px;letter-spacing:1.8px;color:var(--pink);font-weight:800;text-transform:uppercase}.preview{height:142px;border:1px solid #65405b;border-radius:14px;display:flex;align-items:center;justify-content:center;background:radial-gradient(ellipse at 54% 33%,#8b5a895f,transparent 60%),linear-gradient(135deg,#342238,#241c32);overflow:hidden;position:relative}.preview svg{width:135px;height:135px}.preview span{position:absolute;bottom:8px;left:9px;font-size:10px;color:#dec6d4}.brief{font-size:12px;color:#eadbe8;margin-top:12px;display:grid;gap:7px}.brief div{display:grid;grid-template-columns:19px 1fr;gap:5px}.brief b{color:var(--pink)}
+.btn{border:1px solid #59435e;background:#392b41;color:var(--text);border-radius:11px;padding:10px 13px;min-height:42px;font-size:12px;font-weight:750;display:inline-flex;justify-content:center;align-items:center;gap:8px;text-align:center;transition:filter .15s,transform .15s}.btn:hover{filter:brightness(1.12)}.btn:active{transform:scale(.99)}.btn.primary{background:linear-gradient(105deg,#ffa5c9,#d9b7ff);color:#27182d;border-color:transparent}.btn.soft{background:#30253b}.btn.danger{color:#ffc0ca;border-color:#915267}.btn:disabled{opacity:.48;cursor:not-allowed}.full{width:100%}.actions-grid{display:grid;grid-template-columns:1fr 1fr;gap:7px;margin-top:8px}.actions-grid .btn{min-width:0}.lockrow{display:grid;grid-template-columns:1fr 1fr;gap:8px}.lockitem{cursor:pointer;user-select:none;display:flex;gap:7px;align-items:center;padding:9px;border-radius:10px;background:#2b2233;border:1px solid #493951;font-size:12px}.lockitem:has(input:checked){border-color:#d8a5d2;background:#47304a}.lockitem input{accent-color:#ffabd1;margin:0}.lockitem .ico{width:17px;text-align:center}.hint{font-size:11px;color:var(--muted);line-height:1.5}.mini-actions{display:flex;gap:7px;flex-wrap:wrap;margin-top:12px}
+.tabbar{display:flex;gap:5px;border:1px solid var(--line);background:#1a1620;padding:6px;border-radius:15px;overflow-x:auto;scrollbar-width:thin;margin-bottom:15px}.tab{flex:0 0 auto;border:0;padding:10px 13px;border-radius:10px;min-height:40px;background:transparent;color:#bcb0c8;font-weight:750;font-size:12px;white-space:nowrap}.tab.active{background:#49324e;color:white;box-shadow:0 4px 15px #0003}.panel-heading{display:flex;justify-content:space-between;align-items:end;gap:10px;margin-bottom:12px}.panel-heading h2{margin:0;font-size:20px;letter-spacing:-.5px}.panel-heading p{font-size:12px;color:var(--muted);margin:2px 0 0}.chip{font-size:11px;padding:7px 10px;border:1px solid var(--line);border-radius:9px;white-space:nowrap;color:#e6cfe5}.view{display:none}.view.active{display:block}
+.sections{display:grid;gap:10px}.detail{border-radius:15px;border:1px solid var(--line);background:#241c2b;overflow:hidden}.detail summary{display:flex;justify-content:space-between;align-items:center;gap:10px;list-style:none;cursor:pointer;padding:15px 17px}.detail summary::-webkit-details-marker{display:none}.detail h3{font-size:14px;margin:0}.detail small{display:block;font-size:11px;color:var(--muted)}.sectionicon{width:35px;height:35px;border:1px solid #65476e;border-radius:10px;display:grid;place-items:center;background:#48314d}.sectitle{display:flex;align-items:center;gap:10px}.detail-body{padding:0 17px 13px}.datarow{display:grid;grid-template-columns:minmax(115px,34%) minmax(0,1fr);gap:12px;padding:9px 0;border-top:1px solid #4c3b526e;font-size:12px}.datarow span:first-child{color:var(--muted)}
+.editgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}.editorcard{padding:18px}.editorcard h3{margin:0 0 12px;font-size:15px}.editrow{margin:0 0 13px}.editrow:last-child{margin-bottom:0}.editlabel{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:12px;color:#e6d9e8;margin-bottom:6px}.editlabel output{color:#ffc2df;font-size:12px;font-weight:800}.field,.input,.select,.area{width:100%;border-radius:10px;min-height:38px;background:#17121d;border:1px solid #584660;color:#faf3fb;padding:8px 10px;font-size:12px}.area{min-height:85px;resize:vertical}.range{width:100%;accent-color:#f3a0d0;cursor:pointer}.groupnote{font-size:11px;color:var(--muted);margin-top:12px}.span2{grid-column:1/-1}.barrow{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:12px}.barrow select{width:auto;max-width:100%}
+.outfit-preview{border:1px solid #6a4968;border-radius:15px;min-height:170px;display:grid;grid-template-columns:145px 1fr;gap:18px;align-items:center;background:linear-gradient(140deg,#39263a,#281f32);padding:18px;margin-bottom:13px}.dress-art{width:115px;height:145px;display:block;margin:auto;filter:drop-shadow(0 10px 12px #0005)}.outfit-preview h3{font-size:19px;margin:0 0 6px}.outfit-preview p{font-size:12px;color:#e4d3e4;margin:0}.outfit-preview small{font-size:10px;color:#bfb1c9}.palette{width:24px;height:24px;border:1px solid #fff4;border-radius:6px;display:inline-block;vertical-align:middle;margin-right:7px}
+.prompt-box{width:100%;min-height:550px;border:1px solid #58465d;background:#16121d;color:#f5ebf6;padding:17px;border-radius:13px;line-height:1.7;font-size:12px;resize:vertical}.buttonline{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.buttonline button{flex:1}.status{padding:10px 12px;border:1px solid #605167;border-radius:12px;background:#302639;font-size:12px;color:#eadce9}.status.good{border-color:#49715e;color:#d2f5de}.status.error{border-color:#904a65;color:#ffccd9}.favoritegrid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.fav{padding:17px}.fav h3{margin:0;font-size:18px}.fav p{margin:8px 0 12px;color:var(--muted);font-size:12px}.imageoutput{border:1px dashed #674c6c;border-radius:16px;min-height:315px;display:grid;place-items:center;text-align:center;background:#16131c;overflow:hidden;padding:10px}.imageoutput img{max-width:100%;max-height:780px;object-fit:contain;border-radius:11px}.imageoutput .placeholder{max-width:330px;padding:25px;color:var(--muted);font-size:12px}.imageoutput .placeholder strong{display:block;color:#f1dcec;font-size:16px;margin-bottom:7px}.form-note{margin:8px 0;color:var(--muted);font-size:11px}.warning{padding:11px 13px;border:1px solid #846142;background:#3b2c26;border-radius:11px;font-size:11px;color:#ffdfbc}.quickpill{font-size:10px;padding:4px 8px;border-radius:8px;background:#3c2c43;color:#f6cae4}.footer{text-align:center;color:var(--subtle);font-size:11px;margin-top:25px}.toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,65px);opacity:0;pointer-events:none;z-index:100;background:#4b3352;color:white;border:1px solid #d4a5d0;padding:11px 16px;border-radius:12px;box-shadow:0 12px 40px #0008;max-width:calc(100vw - 28px);font-size:12px;transition:transform .2s,opacity .2s}.toast.show{opacity:1;transform:translate(-50%,0)}.loading{opacity:.72;pointer-events:none}
+@media(max-width:1000px){.app{padding:15px 12px 50px}.columns{grid-template-columns:290px minmax(0,1fr)}.editgrid{grid-template-columns:1fr}}
+@media(max-width:780px){.columns{grid-template-columns:1fr}.sidebar{position:static;max-height:none;overflow:visible}.top{margin-bottom:13px}.pill{display:none}.hero-right{display:none}.hero{padding:23px}.app{padding:12px 10px 45px}.statgrid{margin-top:9px}.lockrow{grid-template-columns:repeat(3,1fr)}.editgrid{grid-template-columns:1fr 1fr}.favoritegrid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.editgrid{grid-template-columns:1fr}.favoritegrid{grid-template-columns:1fr}.lockrow{grid-template-columns:1fr 1fr}.outfit-preview{grid-template-columns:110px 1fr;padding:11px;gap:9px}.dress-art{width:90px}.hero h1{font-size:29px}.buttonline{display:grid;grid-template-columns:1fr 1fr}.buttonline button{width:100%}.panel-heading{align-items:start}.panel-heading h2{font-size:18px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+
+.provider-options{margin-top:5px}.provider-options[hidden]{display:none!important}.provider-options small{font-size:11px;color:var(--muted)}.provider-options code{font-size:11px;color:#ffcfeb}.imageoutput img{display:block}.btn[href]{text-decoration:none}.status{margin-top:15px}
+</style>
+</head><body>
+<div class="app">
+<header class="top"><div class="brand"><div class="logo">✦</div><div><div class="smallcaps">AI FASHION LAB · V6</div><div class="brand-name">Atelier Muse</div><div class="tiny muted">Karakter · Tasarım · Fotoğraf</div></div></div><div class="pill"><i></i>Yerel karakter üretimi aktif</div></header>
+<section class="hero"><div><div class="smallcaps">KENDİ MODA EVRENİNİ TASARLA</div><h1>Bir karakter. <em>Sınırsız görünüm.</em></h1><p>18–25 yaş arası yetişkin karakterler; 70+ ayrıntı, fiziksel ölçüler, dantelli mini elbiseler, poz yönetimi, sahne ışıkları, karakter kilitleri ve isteğe bağlı görsel AI bağlantısı.</p></div><div class="hero-right"><b id="generatedCount">1</b><span>Oluşturulan karakter</span></div></section>
+<div class="columns"><aside class="sidebar">
+<section class="card cardpad"><div style="display:flex;justify-content:space-between;align-items:center"><span class="labelcaps">AKTİF KARAKTER</span><span class="quickpill" id="serial">#0001</span></div>
+<div class="preview" aria-label="Stilize profil simgesi; fotogerçekçi önizleme değildir"><svg viewBox="0 0 140 145" aria-hidden="true"><defs><linearGradient id="avatarshade" x1="0" x2="1" y1="0" y2="1"><stop offset="0" stop-color="#fbcadd"/><stop offset="1" stop-color="#b789a7"/></linearGradient></defs><circle cx="70" cy="67" r="63" fill="none" stroke="#d4a9ce" stroke-opacity=".28"/><path d="M30 136 Q31 99 53 95 L87 95 Q109 99 110 136Z" fill="#a774a0"/><path d="M43 67 Q31 22 67 19 Q104 14 99 71 L95 103 Q70 119 43 101Z" fill="#3a2837"/><ellipse cx="70" cy="69" rx="30" ry="38" fill="url(#avatarshade)"/><path d="M39 62 Q29 18 71 18 Q112 22 101 65 Q94 43 82 36 Q67 52 39 62" fill="#493046"/><path d="M59 69h8m8 0h8" stroke="#795064" stroke-width="2" stroke-linecap="round"/><path d="M65 86 Q70 90 77 85" stroke="#965b78" stroke-width="2" fill="none" stroke-linecap="round"/></svg><span>Stilize simge — gerçek fotoğraf değil</span></div>
+<div style="display:flex;align-items:center;justify-content:space-between;gap:9px;margin-top:12px"><strong class="name" id="personName">—</strong><span class="quickpill" id="personAge">— yaş</span></div>
+<div class="statgrid"><div class="stat"><small>BOY</small><strong id="personHeight">—</strong></div><div class="stat"><small>KİLO</small><strong id="personWeight">—</strong></div><div class="stat"><small>DETAY</small><strong id="featureCount">—</strong></div></div>
+<div class="brief"><div><b>◇</b><span id="summaryFace"></span></div><div><b>✿</b><span id="summaryDress"></span></div><div><b>⌖</b><span id="summaryScene"></span></div></div><hr class="line">
+<button class="btn primary full" id="newModel">✦ Yeni rastgele karakter</button><div class="actions-grid"><button class="btn" id="randomOutfit">♧ Kıyafeti değiştir</button><button class="btn" id="randomPose">⌖ Poz & sahne</button><button class="btn" id="randomFace">☺ İfadeyi değiştir</button><button class="btn" id="saveModel">♡ Karakteri kaydet</button></div><div class="mini-actions"><button class="btn soft" id="undoButton" type="button">↶ Geri al</button><button class="btn soft" id="exportJson" type="button">↓ JSON</button><button class="btn soft" id="importButton" type="button">↑ İçe aktar</button><input id="importFile" type="file" accept="application/json,.json" style="display:none"></div></section>
+<section class="card cardpad"><h3>🔒 Karakter kilitleri</h3><p class="hint">İşaretlenen alanlar rastgele üretimde korunur. Editörlerle istediğin zaman elle değiştirebilirsin.</p><div class="lockrow" id="lockGrid"></div><p class="hint" style="margin:11px 0 0">Aynı karakteri tekrar çalışmak için <b>Karakteri kaydet</b> seçeneğini kullan.</p></section>
+<section class="card cardpad"><h3>Üretim sınırları</h3><div style="display:flex;flex-wrap:wrap;gap:6px"><span class="quickpill">18–25 yaş</span><span class="quickpill">Açık / buğday ten</span><span class="quickpill">Dantelli mini elbise</span><span class="quickpill">Opak astarlı tül</span><span class="quickpill">Tam boy kadraj</span></div><p class="hint" style="margin:12px 0 0">Düzenlemeler ve karakter kayıtları bu tarayıcının yerel hafızasında tutulur. AI görüntü üretimi için ayrıca sunucu ve API erişimi gereklidir.</p></section>
+</aside><main class="main">
+<nav class="tabbar" id="tabbar" aria-label="Uygulama bölümleri">
+<button class="tab active" data-tab="details">✧ Tüm detaylar</button><button class="tab" data-tab="body">♧ Vücut editörü</button><button class="tab" data-tab="face">☺ Yüz & saç</button><button class="tab" data-tab="outfit">✿ Kıyafet stüdyosu</button><button class="tab" data-tab="pose">⌖ Poz & kamera</button><button class="tab" data-tab="scene">☼ Sahne & ışık</button><button class="tab" data-tab="image">✦ Görsel AI</button><button class="tab" data-tab="prompt">▤ Prompt</button><button class="tab" data-tab="saved">♡ Arşiv <span id="archiveCount"></span></button>
+</nav>
+<section class="view active" id="detailsView"><div class="panel-heading"><div><h2>Karakterin bütün ayrıntıları</h2><p>Anatomi, yüz, stil, duruş, ölçüler ve görsel direktifler</p></div><span class="chip" id="detailCount"></span></div><div class="sections" id="detailSections"></div></section>
+<section class="view" id="bodyView"><div class="panel-heading"><div><h2>Gelişmiş vücut editörü</h2><p>Oranlar, çevre ölçüleri, uzuvlar ve anatomik karakteristikler</p></div><span class="chip">Canlı düzenleme</span></div><div class="editgrid" id="bodyEditor"></div></section>
+<section class="view" id="faceView"><div class="panel-heading"><div><h2>Yüz ve saç tasarım stüdyosu</h2><p>Göz, çene, ten, saç dokusu ve makyajın her parçası</p></div></div><div class="editgrid" id="faceEditor"></div></section>
+<section class="view" id="outfitView"><div class="panel-heading"><div><h2>Kıyafet tasarım stüdyosu</h2><p>Dantel, transparan tül, dekolte, kesim ve aksesuarları özelleştir</p></div></div><div class="outfit-preview" id="outfitPreview"></div><div class="editgrid" id="outfitEditor"></div></section>
+<section class="view" id="poseView"><div class="panel-heading"><div><h2>Poz ve kamera yönetmeni</h2><p>Kol, bacak, bakış, mimik, kadraj, lens ve dönüş açıları</p></div></div><div class="editgrid" id="poseEditor"></div></section>
+<section class="view" id="sceneView"><div class="panel-heading"><div><h2>Arka plan ve ışık stüdyosu</h2><p>Mekân, dekor, günün saati, ışığın sıcaklığı ve alan derinliği</p></div></div><div class="editgrid" id="sceneEditor"></div></section>
+<section class="view" id="imageView">
+<div class="panel-heading"><div><h2>Görsel üretim stüdyosu</h2><p>API anahtarsız Puter, ücretsiz yerel ComfyUI veya kendi sunucun</p></div><span class="chip">V6.2 · Model uyumluluğu</span></div>
+<div class="card editorcard" style="margin-bottom:13px">
+<h3>1 · Görsel üretim yöntemini seç</h3>
+<div class="editrow"><label class="editlabel" for="imageProvider">Sağlayıcı</label><select class="select" id="imageProvider">
+<option value="puter">Puter · API anahtarı yok, ücretsiz aylık hesap kotası</option>
+<option value="comfy">ComfyUI · kendi bilgisayarında ücretsiz / yerel</option>
+<option value="openai">Mevcut API sunucum · kullanım ücretli olabilir</option>
+</select></div>
+<div id="puterOptions" class="provider-options">
+<div class="warning" style="margin-bottom:12px"><b>Ücretsiz kota, sınırsız değil.</b> Puter hesabının aylık ücretsiz kullanım hakkı varsa ondan düşer. Kullanım sınırı aşılırsa satın alınan kredi gerekebilir. API anahtarı gerekmiyor. <b>Önemli:</b> Puter girişi <code>file://</code> açılan dosyada çalışmaz; uygulamayı GitHub Pages gibi HTTPS web sitesinde veya <code>http://localhost</code> adresinde açmalısın. GitHub Pages üzerinde ComfyUI/özel API seçenekleri ayrıca çalışan bir sunucu olmadan çalışmaz.</div>
+<div class="editrow"><label class="editlabel" for="puterModel">Görsel modeli</label><select class="select" id="puterModel">
+<option value="google/gemini-3.1-flash-image-preview">Gemini 3.1 Flash Image · önerilen</option>
+<option value="gemini-3.1-flash-image">Gemini Flash Image · önceki çalışan model</option>
+<option value="black-forest-labs/flux-schnell">FLUX Schnell · hızlı</option>
+<option value="black-forest-labs/flux-2-klein-4b">FLUX.2 Klein 4B · alternatif</option>
+<option value="black-forest-labs/flux-2-pro">FLUX.2 Pro · daha ayrıntılı</option>
+<option value="openai/gpt-image-2.6-flare">GPT Image 2.6 Flare</option>
+<option value="openai/gpt-image-2">GPT Image 2</option>
+<option value="google/imagen-4.0">Google Imagen 4</option>
+<option value="x-ai/grok-imagine-image">Grok Imagine</option>
+</select></div>
+<div class="editrow"><label class="editlabel" for="puterRatio">Görsel oranı</label><select id="puterRatio" class="select"><option value="2:3">2:3 dikey, tam boy</option><option value="9:16">9:16 dikey</option><option value="1:1">1:1 kare</option></select></div>
+<label class="lockitem" style="margin-bottom:10px"><input type="checkbox" id="puterCompatible" checked><span><b>Model uyumluluğunu artır (önerilen)</b><br><small>Gemini dışındaki modellerde kısıtlayıcı görsel oranını göndermeden servis varsayılanlarını kullanır.</small></span></label>
+<label class="lockitem" style="margin-bottom:10px"><input type="checkbox" id="puterShortPrompt" checked><span><b>Gemini dışındaki modellerde kısa moda promptu kullan</b><br><small>Karakterin temel yüz, vücut, kıyafet, poz ve arka plan özellikleri korunur. Tam prompt <b>Prompt</b> sekmesinde kalır.</small></span></label>
+<label class="lockitem" style="margin-bottom:10px"><input type="checkbox" id="puterDemo" checked><span><b>Kredi harcamayan test modu</b><br><small>Bu modda Puter, prompttan bağımsız hazır örnek görsel döndürür: örnekte erkek de çıkabilir. Kadın karakterinin doğru üretildiğini sınamak için kapat. Gerçek istek kota/kredi kullanabilir.</small></span></label>
+<div class="buttonline"><button class="btn soft" id="puterSignIn">♙ Puter hesabına giriş</button><a class="btn" href="https://puter.com" target="_blank" rel="noopener noreferrer">⌁ Puter hesap/limit</a><button class="btn soft" id="puterQuickTest" type="button">⚗ Modeli kısa promptla sına</button></div>
+<div class="warning" style="margin:8px 0 0"><b>FLUX için:</b> Gerçek üretimde yetişkin kadın karakteri en başta açık İngilizce tanımla vurgulayan özel prompt otomatik kullanılır. <b>Model testi:</b> Gerçek karakterini üretmez. Test modu açıksa prompttan bağımsız örnek görsel gelir; kapalıysa kota/kredi kullanılabilir.</div>
+</div>
+<div id="comfyOptions" class="provider-options" hidden>
+<div class="warning" style="margin-bottom:12px"><b>Gerçekten API ücreti yok:</b> ComfyUI + yerel bir görsel modeli kendi bilgisayarında çalışır. Bilgisayarda ComfyUI kurulu, bir checkpoint indirilmiş ve çalışır olmalı. V6 ZIP paketindeki <code>v6_yerel_sunucu.py</code> yardımcı sunucu gereklidir. GPU ve elektrik kullanımı sana aittir.</div>
+<div class="editrow"><label class="editlabel" for="comfyModel">Yüklü checkpoint</label><select class="select" id="comfyModel"><option value="">Önce bağlantıyı test et</option></select></div>
+<div class="editrow"><label class="editlabel" for="comfySize">Boyut / cihaz yükü</label><select class="select" id="comfySize"><option value="512x768">512×768 · daha hafif</option><option value="768x1152">768×1152 · daha ayrıntılı</option></select></div>
+<p class="form-note">Yerel ComfyUI: <code>http://127.0.0.1:8188</code> • Bu HTML: <code>http://127.0.0.1:8765</code> . Sunucu aynı cihazda çalışır.</p>
+</div>
+<div id="apiOptions" class="provider-options" hidden>
+<div class="warning" style="margin-bottom:12px">Bu yol ücretsiz değildir; API servisinin fiyatına göre ücret çıkabilir. API anahtarını HTML içine yazma.</div>
+<div class="editrow"><label class="editlabel" for="apiUrl">Görsel üretim sunucusu adresi</label><input class="input" id="apiUrl" value="/api/generate-image" autocomplete="off" spellcheck="false"></div>
+<div class="editrow"><label class="editlabel" for="apiModel">Model</label><select class="select" id="apiModel"><option value="gpt-image-2.5-sunburst">GPT Image 2.5 Sunburst</option><option value="gpt-image-2.5-flare">GPT Image 2.5 Flare</option><option value="gpt-image-2">GPT Image 2</option><option value="gpt-image-1.5">GPT Image 1.5</option></select></div>
+<div class="editrow"><label class="editlabel" for="apiQuality">Kalite</label><select class="select" id="apiQuality"><option value="medium">Orta</option><option value="high">Yüksek</option><option value="low">Düşük</option></select></div>
+<div class="editrow"><label class="editlabel" for="apiSize">Boyut</label><select class="select" id="apiSize"><option value="1024x1536">1024×1536</option><option value="1024x1024">1024×1024</option><option value="1536x1024">1536×1024</option></select></div>
+</div>
+<div id="puterErrorPanel" class="card" style="display:none;margin:10px 0"><h3 style="margin:0 0 8px">Hata ayrıntısı</h3><pre id="puterErrorText" style="white-space:pre-wrap;overflow-wrap:anywhere;font-size:12px;line-height:1.45;max-height:220px;overflow:auto"></pre><button id="puterCopyError" class="btn soft" type="button">▣ Hata ayrıntısını kopyala</button></div>
+<div id="connectionStatus" class="status" role="status">Puter seçili. GitHub Pages gibi HTTPS bir sitede Puter hesabı gerekir. İlk testte örnek görsel çıkar; gerçek karakter için test modunu kapat.</div>
+<div class="buttonline"><button class="btn" id="testConnection">⌁ Bağlantıyı kontrol et</button><button class="btn primary" id="generateImage">✦ Görsel üret</button></div>
+<p class="form-note">Test modu örnek görseldir; gerçek karakteri üretmez. Gerçek görüntü hesabınla veya yerel modelle oluşturulur. Sonuç otomatik arşive kaydedilmez.</p>
+</div>
+<div class="card editorcard"><h3>2 · Görsel sonucu</h3><div id="imageOutput" class="imageoutput"><div class="placeholder"><div style="font-size:35px;margin-bottom:6px">✧</div><strong>Henüz görsel üretilmedi</strong>Üstten yöntemi seç; ilk deneme için Puter test modunu kullanabilir veya tam boy gerçek görsel üretebilirsin.</div></div><div class="buttonline"><button class="btn" id="downloadImage" disabled>↓ Görseli indir</button><button class="btn soft" id="goPrompt">▤ Promptu görüntüle</button></div></div>
+</section>
+<section class="view" id="promptView"><div class="panel-heading"><div><h2>Fotogerçekçi görsel promptu</h2><p>Tüm ayrıntılar, ölçüler, sahne, kamera ve moda talimatları</p></div></div><div class="card editorcard"><textarea id="promptText" class="prompt-box" spellcheck="false" aria-label="Düzenlenebilir görsel promptu"></textarea><div class="buttonline"><button class="btn primary" id="copyPrompt">▣ Promptu kopyala</button><button class="btn" id="downloadPrompt">↓ TXT indir</button><button class="btn" id="resetPrompt">↶ Promptu yenile</button></div><p class="form-note" id="promptCount"></p><p class="form-note">Metni burada düzenlersen AI üretiminde düzenlenmiş sürüm kullanılır. Karakter özelliklerini tekrar değiştirdiğinde prompt yeniden oluşturulur.</p></div></section>
+<section class="view" id="savedView"><div class="panel-heading"><div><h2>Karakter hafızası</h2><p>Kaydet, geri çağır, güncelle, dışa aktar veya sil</p></div></div><div class="favoritegrid" id="savedList"></div></section>
+</main></div><div class="footer">Atelier Muse V6.2 · Yalnızca yetişkin karakterler · Çevrimdışı editör · Puter hesap kotası / ücretsiz yerel ComfyUI / isteğe bağlı API</div></div><div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script>
+'use strict';
+  const POOLS = {
+    names:['Aylin','Lara','Mira','Alara','Asya','Defne','Lina','Nehir','Selin','Melis','Nora','Ceren','İdil','Ela','Eylül','Derin','Yaren','Elisa','Duru','Beril','İrem','Su','Damla','Hazal'],
+    skin:['açık fildişi, nötr alt tonlu','açık porselen, serin pembe alt tonlu','açık buğday, sıcak alt tonlu','şeftali alt tonlu açık ten','nötr açık bej','hafif bronz, sıcak altın alt tonlu','açık zeytin alt tonlu'],
+    skinTexture:['yanaklarında çok hafif çiller bulunan, doğal gözenekli','pürüzsüz görünümlü, gerçekçi ince gözenekli','burun köprüsünde hafif çil kümeleri olan','doğal cilt ışıltılı, yanaklarında hafif pembelik olan'],
+    face:['yuvarlak, yumuşak yanaklı','kalp biçimli, dar çeneli','uzun oval, belirgin kemik yapılı','oval, dengeli yüz oranlarına sahip','hafif köşeli, belirgin çene hatlı'],
+    forehead:['geniş ve hafif kavisli','orta genişlikte, düzgün','dar, saç çizgisiyle orantılı'],
+    brows:['orta kalınlıkta, düz ve koyu','kalın, doğal kavisli','ince, dış uçları hafif kalkık','yoğun, belirgin ve simetrik'],
+    eyeShape:['iri, badem biçimli','hafif çekik, dış köşeleri kalkık','yuvarlak, geniş bakışlı','ince badem biçimli'],
+    iris:['açık bal rengi','zümrüt yeşili','koyu çikolata kahverengisi','altın ışıltılı ela','gri-mavi','açık mavi','zeytin yeşili'],
+    eyelids:['derin kapak çizgili','hafif belirgin katlantılı','yumuşak, doğal katlantılı'],
+    lashes:['uzun, dış köşelere uzanan','sık, yukarı doğru kıvrık','doğal yoğunlukta, belirgin'],
+    nose:['küçük, hafif kalkık','ince köprülü, zarif uçlu','düz köprülü, orantılı','hafif kemerli, yuvarlak uçlu'],
+    lips:['orta dolgunlukta, simetrik','dolgun, belirgin dudak yaylı','geniş, doğal dolgunlukta','ince üst, dolgun alt dudaklı'],
+    cheeks:['hafif dolgun, yumuşak konturlu','yüksek elmacık kemikli','ince yanaklı, keskin konturlu'],
+    jaw:['yumuşak, belirgin olmayan çene çizgili','oval, dengeli çene hatlı','belirgin ve simetrik çene kemikli'],
+    chin:['yuvarlak ve zarif','küçük ve sivri','oval biçimde biten'],
+    ears:['hafif belirgin kulak memeli','küçük, başa yakın','orta boy, zarif kıvrımlı'],
+    hairColor:['çikolata kahverengisi','gece siyahı','bakır kızılı','koyu kestane','küllü sarı','karamel kumral','platin sarısı','koyu kumral'],
+    hairLength:['bel hizasına uzanan','kalça üstüne ulaşan','göğüs altına uzanan','omuz altına dökülen'],
+    hairTexture:['hafif dalgalı, katlı','düz, parlak ve ipeksi','geniş dalgalı, hacimli','doğal kıvırcık, yoğun'],
+    hairPart:['hafif sağdan ayrılmış','ortadan ayrılmış','soldan ayrılmış, yüzü çerçeveleyen'],
+    babyHairs:['şakaklarda doğal ince saç telleri bulunan','saç çizgisi düzenli, önlerde birkaç serbest tutam bulunan','yüz kenarlarında yumuşak katlar bulunan'],
+    eyeMakeup:['ince kuyruklu eyeliner ve bronz far','yumuşak kahverengi buğulu far','ışıltılı şampanya far ve belirgin kirpikler','pembe tonlu far ve ince eyeliner'],
+    faceMakeup:['şeftali allık, hafif aydınlatıcı','gül kurusu allık ve doğal kontür','hafif bronz kontür ve aydınlatıcı','doğal ten makyajı, pembe allık'],
+    lipMakeup:['nude şeftali ruj','parlak pembe dudak parlatıcısı','gül kurusu saten ruj','şeffaf parlaklıkla vişne tonlu ruj'],
+    neck:['uzun, ince ve zarif','orta uzunlukta, orantılı','kısa, yumuşak hatlı'],
+    collarbones:['zarif biçimde ortaya çıkan','hafif belirgin ve simetrik','omuzlarla dengeli genişlikte'],
+    trapezius:['yumuşak eğimli, doğal','hafif atletik konturlu','ince, zarif geçişli'],
+    shoulders:['orta genişlikte, simetrik','dar, hafif eğimli','atletik, geniş hatlı','yuvarlak, yumuşak geçişli'],
+    upperArms:['ince, uzun ve zarif','orta dolgunlukta, orantılı','atletik, hafif kas belirgin'],
+    forearms:['ince, bileğe doğru zarif incelen','atletik, hafif kas hatlı','yumuşak hatlı, simetrik'],
+    elbows:['hafif kemik çıkıntıları belirgin','küçük, yuvarlak hatlı'],
+    wrists:['orta kalınlıkta, orantılı','ince, zarif','hafif belirgin bilek kemikli'],
+    bust:['dolgun, orantılı','orta hacimli, dengeli','küçük hacimli, doğal konturlu','orta dolgunlukta, göğüs kafesiyle uyumlu'],
+    ribcage:['orta genişlikte, orantılı','dar ve ince yapılı','atletik gövde yapılı'],
+    waist:['atletik, hafif kaslı','ince, belirgin kıvrımlı','orta incelikte, yumuşak geçişli','kısa gövdeli, belirgin bel hatlı'],
+    abdomen:['yumuşak, doğal kıvrımlı','düz, hafif kas çizgili','sıkı, atletik','hafif yuvarlak, doğal'],
+    navel:['hafif derin, yuvarlak','küçük, oval','dar, dikey biçimli'],
+    back:['düz, simetrik, hafif kürek kemiği belirgin','ince, zarif sırt hatlı','atletik, hafif belirgin sırt kaslı','yumuşak hatlı, orantılı'],
+    hips:['orta genişlikte, yuvarlak','dar, düz geçişli','geniş, belirgin kıvrımlı','atletik, sıkı'],
+    glutes:['yuvarlak, orta dolgunlukta','dolgun, orantılı','küçük, sıkı ve atletik','yumuşak, doğal konturlu'],
+    thighs:['atletik, hafif kas belirgin','ince ve uzun','dolgun, yumuşak hatlı','orta kalınlıkta, orantılı'],
+    knees:['yuvarlak, yumuşak hatlı','küçük, zarif','hafif kemik hatları belirgin'],
+    shins:['orantılı, yumuşak konturlu','uzun, düz çizgili','hafif kas hatları görülen'],
+    calves:['yuvarlak, yumuşak hatlı','ince ve uzun','atletik, belirgin kaslı'],
+    ankles:['ince, belirgin kemikli','zarif, yuvarlak geçişli','orta kalınlıkta, orantılı'],
+    feet:['uzun, ince yapılı','dar ve zarif','orta genişlikte, orantılı'],
+    hands:['küçük, zarif parmaklı','uzun, ince parmaklı','orta büyüklükte, orantılı'],
+    fingers:['ince eklemli, hafif uzun','küçük ve düzgün, zarif','orta uzunlukta, simetrik'],
+    nails:['uzun kırmızı stiletto','parlak pembe badem','süt beyazı oval','nude Fransız manikürlü','bordo, uzun badem'],
+    earrings:['inci ve kristal taşlı küpeler','büyük altın halka küpeler','ince gümüş sallantılı küpeler','çoklu küçük altın halkalar'],
+    necklace:['altın kalp uçlu kolye ile ince zincir','üç katmanlı altın zincir kolyeler','taşlı choker ile uzun kolye','minimal iki katmanlı altın kolyeler'],
+    bracelets:['altın yılan kol bileziği ve ince bileklikler','çoklu ince altın zincir bileklik','taşlı tenis bilekliği','minimal gümüş bileklikler'],
+    rings:['büyük oval taşlı yüzük ve ince halkalar','her iki elde çoklu altın yüzükler','zarif taşlı yüzükler','ince halkalarla kombinlenmiş tek gösterişli yüzük'],
+    extras:['ince altın halhal ve şahmeran','çift halhal ve el zinciri','ince bel zinciri ve taşlı yüzükler','altın üst kol bileziği ve halhal'],
+    shoes:['krem rengi ince topuklu sandalet','siyah ince bantlı stiletto sandalet','metalik altın topuklu sandalet','bordo sivri burun rugan stiletto','bilekten bağlı gümüş topuklu ayakkabı'],
+    bag:['mini siyah deri omuz çantası','küçük metalik zincir askılı çanta','taşlı saten clutch','küçük krem rengi omuz çantası'],
+    posture:['gövdesini kameraya üç çeyrek açıyla çevirmiş','ağırlığını sağ bacağına aktarmış, omuzları rahat','omurgası dik, iki omzu dengeli','belden hafif yana eğilmiş, doğal S siluetli','yürüyüş ortasında, ağırlığı öndeki ayakta'],
+    legsPose:['yürüyüş adımında, sağ ayak önde','bir bacağı hafif önde, dizler rahat','bacaklar doğal biçimde çapraz','sol diz hafif bükülü, diğer bacak düz','ayaklar dar aralıkla, dengeli'],
+    armsPose:['bir el çantanın askısında, diğeri belde','bir el belde, diğeri yanda','bir el saç uçlarına dokunuyor, diğeri rahat','iki kol doğal biçimde yanlarda','bir el çantayı taşıyor, diğeri kalça yanında'],
+    headPose:['baş düz, çene rahat','baş hafif sağa eğilmiş','çene çok hafif yukarı kalkık','yüz üç çeyrek açıyla çevrilmiş'],
+    expression:['neşeli, dişlerin hafif göründüğü gülümseme','hafif aralık dudaklarla sakin ve özgüvenli ifade','yumuşak, doğal gülümseme','ciddi, kararlı bakış','oyuncu, tek kaşın hafif kalktığı ifade','düşünceli, sakin yüz ifadesi'],
+    gaze:['sağ tarafta uzak bir noktaya','doğrudan kamera lensine','omuz üzerinden kameraya','sol tarafta uzak bir noktaya','kameranın hemen yanına'],
+    camera:['dikey 9:16, tam boy moda portresi','göz hizasında, baştan ayağa dikey kadraj','hafif alçak açıdan tam boy portre','üç çeyrek açıdan tam boy moda fotoğrafı'],
+    lighting:['sıcak altın saat ışığı','yumuşak gün ışığı ve doğal gölgeler','büyük softbox ile profesyonel moda ışığı','gece ambiyansında yumuşak flaş ve arka ışık'],
+    mood:['modern, şehirli ve canlı','lüks, rafine ve sakin','romantik ve yumuşak','editoryal, iddialı ve şık']
+  };
+  const DRESSES=[
+    {name:'Pudra pembe korsaj',color:'pudra pembe',fabric:'çiçek desenli dantel, ince tül ve ten uyumlu opak astar',neck:'kalp yaka, balenli korsaj görünümü ve belirgin dekolte çizgisi',panels:'dekolte çevresinde ince transparan tül, dantel kollar ve astarlı yan paneller',back:'saten bağcıklı arka korsaj',hem:'üst uyluk hizasında biten, kısa ve hafif A kesim mini',details:'mikro inci boncuklar, tül fırfırlar ve çiçek kenarları',closure:'arka bağcık ve gizli fermuar'},
+    {name:'Siyah gece danteli',color:'derin siyah',fabric:'esnek saten astar üzerine ince çiçek motifli Fransız danteli',neck:'derin V yaka, ince askılar ve zarif göğüs dikişleri',panels:'bel yanlarında ten rengi astarla desteklenen transparan tül',back:'açık sırt ve çapraz ince askılar',hem:'üst uyluk hizasında çok kısa, dar mini',details:'kirpik dantel kenarları ve minik siyah kristaller',closure:'gizli arka fermuar'},
+    {name:'Bordo saten romantik',color:'bordo ve siyah',fabric:'parlak bordo saten, siyah gipür dantel ve tül',neck:'derin kalp yaka ve yapılandırılmış korsaj',panels:'omuzlarda ve yanlarda astarlı transparan dantel',back:'bağcıklı sırt açıklığı',hem:'çok kısa, hafif asimetrik mini',details:'siyah dantel bordür ve saten bağcıklar',closure:'bağcıklı sırt kapaması'},
+    {name:'Beyaz çiçekli tül',color:'fildişi beyaz',fabric:'çiçek aplikeli ince transparan tül ve opak saten astar',neck:'geniş U yaka ve düşük omuzlu tül kollar',panels:'omuz ve kol boyunca çiçekli yarı saydam paneller',back:'dantel çerçeveli kare sırt açıklığı',hem:'kısa, fırfırlı mini etek',details:'üç boyutlu çiçek aplikeleri ve inci işlemeleri',closure:'gizli yan fermuar'},
+    {name:'Zümrüt halter',color:'zümrüt yeşili',fabric:'ipeksi jarse, siyah dantel ve yumuşak tül',neck:'derin halter yaka ve boyundan bağlanan şeritler',panels:'yan belde opak astarlı illüzyon tül',back:'bel hizasına uzanan açık sırt',hem:'üst uyluk hizasında biten dar mini',details:'drapeli katlar ve küçük metal halka aksesuarları',closure:'boyun bağı ve gizli fermuar'},
+    {name:'Kırmızı dantel mini',color:'canlı kırmızı',fabric:'parlak saten, aynı tonda çiçek motifli dantel',neck:'derin U yaka, ince askılar ve büzgülü göğüs çizgisi',panels:'yan belde ten uyumlu astarlı dantel',back:'açık sırt ve çapraz bağlar',hem:'çok kısa, bedeni takip eden mini',details:'çiçek aplikeler ve saten bordür',closure:'arka ince bağcık'},
+    {name:'Şampanya ışıltısı',color:'şampanya altını',fabric:'ışıltılı saten astar ve kristalli tül',neck:'derin V yaka ve ince omuz askıları',panels:'dekolte çevresinde geometrik transparan tül ve taş işlemeler',back:'sırt dekoltesi, kristal zincir detayı',hem:'kısa, asimetrik drapeli mini',details:'minik taş süslemeleri ve parlak dikişler',closure:'gizli yan fermuar'},
+    {name:'Lacivert gece',color:'gece laciverti',fabric:'kadife ve koyu tonlu çiçek danteli',neck:'düşük omuz ve geniş kalp yaka',panels:'uzun transparan dantel kollar, yanlarda opak astar',back:'geniş oval sırt açıklığı',hem:'üst uylukta biten kısa mini',details:'dantel manşetler ve kadife bordür',closure:'gizli fermuar'},
+    {name:'Lila tül katmanlar',color:'pastel lila',fabric:'organze, çiçek danteli, saten astar',neck:'kalp yaka, ince askılı korsaj',panels:'boyun ve omuz çevresinde transparan tül',back:'dantel bağcıklı sırt',hem:'çok kısa, katlı tül mini',details:'minik saten fiyonklar ve çiçek nakışları',closure:'arka bağcık'},
+    {name:'Siyah-beyaz kontrast',color:'siyah ve kırık beyaz',fabric:'opak beyaz korsaj üzerine siyah gipür',neck:'geniş kare yaka ve düşük omuzlu kollar',panels:'gövde yanlarında astarlı çiçekli siyah tül',back:'derin kare sırt dekoltesi',hem:'dar, çok kısa mini',details:'kontrast korsaj dikişleri ve dantel şeritler',closure:'arka fermuar'},
+    {name:'Krem romantik gipür',color:'krem ve vanilya',fabric:'ince gipür dantel, mikro tül ve opak ipek astar',neck:'düşük omuz, geniş kalp yaka',panels:'kol uçlarında transparan çiçekli tül',back:'derin U biçimli sırt açıklığı',hem:'kısa A kesim mini',details:'inci düğmeler ve dantel etek çevresi',closure:'gizli arka fermuar'},
+    {name:'Gül kurusu saten',color:'gül kurusu',fabric:'mat saten, ton sür ton çiçek danteli',neck:'derin V yaka ve drapeli korsaj',panels:'bel yanlarında ten uyumlu astarlı dantel',back:'çapraz askılı sırt dekoltesi',hem:'kısa, bedene oturan mini',details:'asimetrik büzgüler ve dantel aplike',closure:'gizli yan fermuar'},
+    {name:'Safir mavi tül',color:'safir mavisi',fabric:'ışıltılı jarse ve siyah ince tül',neck:'geniş kalp yaka, omuzları açık',panels:'üst kol boyunca yarı saydam tül kolçaklar',back:'açık sırt ve ince askı bağlantıları',hem:'çok kısa, çapraz drapeli mini',details:'ışıltılı mikro boncuklar ve dantel kenar',closure:'arka gizli fermuar'},
+    {name:'Koyu mürdüm kadife',color:'koyu mürdüm',fabric:'esnek kadife, çiçekli transparan dantel',neck:'derin U yaka ve ince askılar',panels:'omuzlarda tül, yanlarda astarlı dantel şeritler',back:'kavisli sırt açıklığı',hem:'kısa, dar kesim mini',details:'kadife biyeler ve dantel bordür',closure:'gizli yan fermuar'},
+    {name:'Buz pembesi peri tülü',color:'buz pembesi',fabric:'çok katlı ince tül, çiçek danteli ve saten astar',neck:'kalp yaka ve bağcıklı korsaj',panels:'dekolte üst kenarında transparan tül ve yarım kolluklar',back:'saten kurdeleli bağcık',hem:'çok kısa, hafif kabarık mini',details:'minik parlak çiçek aplikeleri',closure:'saten kurdele bağı'},
+    {name:'Siyah kristal çizgiler',color:'siyah ve duman grisi',fabric:'kristal işlemeli esnek tül, opak saten astar',neck:'derin V yaka, ince kristalli askılar',panels:'bel yanlarında şeffaf görünümlü, astarlı geometrik tül',back:'çapraz askılı açık sırt',hem:'çok kısa, düz kesimli mini',details:'kristal çizgiler ve dantel etek kenarı',closure:'arka fermuar'}
+  ];
+  const SCENES=[
+    {name:'Modern moda stüdyosu',place:'açık bej sonsuz fonlu profesyonel stüdyo',props:'minimal platform, yumuşak arka plan geçişleri',time:'kontrollü stüdyo ortamı'},
+    {name:'Lüks otel süiti',place:'mermer zeminli, krem duvarlı ve büyük aynalı otel odası',props:'kadife koltuk, pirinç lambalar, uzun perdeler',time:'akşam'},
+    {name:'Paris tarzı balkon',place:'ferforje korkuluklu, taş cepheli şehir balkonu',props:'açık balkon kapıları, saksı çiçekleri, uzakta kent silueti',time:'gün batımı'},
+    {name:'Şehir terası',place:'yüksek binalara bakan modern çatı terası',props:'cam korkuluk, sıcak ışıklar, şehir silueti',time:'mavi saat'},
+    {name:'Zarif restoran girişi',place:'mermer kolonlu ve sıcak aydınlatmalı lüks giriş',props:'pirinç kapı çerçevesi, çiçek aranjmanları',time:'gece'},
+    {name:'Tarihi saray koridoru',place:'klasik kemerli, yüksek tavanlı süslü koridor',props:'mermer sütunlar, uzun halı, antika aplikler',time:'öğleden sonra'},
+    {name:'Şık giyinme odası',place:'krem tonlu, büyük aynalı modern giyinme alanı',props:'makyaj masası, altın çerçeveli boy aynası, kadife puf',time:'akşam'},
+    {name:'Çiçekli bahçe',place:'taş yürüyüş patikalı, çiçeklerle çevrili bahçe',props:'beyaz pergola, çiçekli kemer, doğal bitkiler',time:'sabah'},
+    {name:'Neoklasik galeri',place:'açık renk heykellerin bulunduğu ferah sanat galerisi',props:'kemerli tavan, mermer kaideler, büyük tablolar',time:'öğlen'},
+    {name:'Pastel fotoğraf stüdyosu',place:'yumuşak pembe ve lila fon geçişli modern stüdyo',props:'minimal geometrik bloklar ve yumuşak zemin gölgesi',time:'kontrollü stüdyo ortamı'},
+    {name:'Botanik sera',place:'cam çatılı ve yeşil bitkilerle çevrili şık sera',props:'demir bitki rafları, doğal taş zemin, sarmaşıklar',time:'öğleden sonra'},
+    {name:'Gece şehir sokağı',place:'şık vitrinli, yağmur sonrası hafif parlak kaldırımlı sokak',props:'bulanık şehir ışıkları, butik tabelaları ve taş cepheler',time:'gece'}
+  ];
+  const GROUPS=[
+    {title:'Yüz ve baş anatomisi',icon:'◉',fields:[['Ten tonu','skin'],['Cilt dokusu','skinTexture'],['Yüz şekli','face'],['Alın','forehead'],['Kaşlar','brows'],['Göz şekli','eyeShape'],['İris rengi','iris'],['Göz kapakları','eyelids'],['Kirpikler','lashes'],['Burun','nose'],['Dudaklar','lips'],['Yanaklar','cheeks'],['Çene hattı','jaw'],['Çene ucu','chin'],['Kulaklar','ears']]},
+    {title:'Saç, cilt ve makyaj',icon:'✿',fields:[['Saç rengi','hairColor'],['Saç uzunluğu','hairLength'],['Saç dokusu','hairTexture'],['Saç ayrımı','hairPart'],['Ön saç ve saç çizgisi','babyHairs'],['Göz makyajı','eyeMakeup'],['Ten makyajı','faceMakeup'],['Dudak makyajı','lipMakeup']]},
+    {title:'Üst vücut anatomisi',icon:'♧',fields:[['Boyun','neck'],['Köprücük kemikleri','collarbones'],['Boyun-omuz geçişi','trapezius'],['Omuzlar','shoulders'],['Üst kollar','upperArms'],['Ön kollar','forearms'],['Dirsekler','elbows'],['El bilekleri','wrists'],['Göğüs yapısı','bust'],['Göğüs kafesi','ribcage'],['Bel','waist'],['Karın','abdomen'],['Göbek deliği','navel'],['Sırt','back']]},
+    {title:'Alt vücut anatomisi',icon:'⌁',fields:[['Kalça','hips'],['Kalça arka hatları','glutes'],['Uyluklar','thighs'],['Dizler','knees'],['Kaval bölgesi','shins'],['Baldırlar','calves'],['Ayak bilekleri','ankles'],['Ayak yapısı','feet']]},
+    {title:'Eller ve manikür',icon:'✧',fields:[['Eller','hands'],['Parmaklar','fingers'],['Tırnaklar','nails']]},
+    {title:'Mini elbise tasarımı',icon:'✿',fields:[['Elbise modeli','dress.name'],['Ana renk','dress.color'],['Kumaş ve astar','dress.fabric'],['Yaka ve dekolte','dress.neck'],['Transparan paneller','dress.panels'],['Sırt tasarımı','dress.back'],['Etek boyu ve kesim','dress.hem'],['İşleme ve süslemeler','dress.details'],['Kapanış ve dikiş','dress.closure']]},
+    {title:'Takı ve aksesuarlar',icon:'◇',fields:[['Küpeler','earrings'],['Kolyeler','necklace'],['Bilezikler','bracelets'],['Yüzükler','rings'],['Ek takılar','extras'],['Ayakkabı','shoes'],['Çanta','bag']]},
+    {title:'Poz, duruş ve yüz ifadesi',icon:'☺',fields:[['Genel duruş','posture'],['Bacak pozu','legsPose'],['Kol ve el pozu','armsPose'],['Baş açısı','headPose'],['Yüz ifadesi','expression'],['Bakış yönü','gaze']]},
+    {title:'Arka plan, kamera ve ışık',icon:'⌖',fields:[['Mekân','scene.name'],['Arka plan','scene.place'],['Çevre nesneleri','scene.props'],['Günün zamanı','scene.time'],['Işıklandırma','lighting'],['Atmosfer','mood'],['Kamera ve kadraj','camera']]}
+  ];
+const $=id=>document.getElementById(id);
+const rand=a=>a[Math.floor(Math.random()*a.length)];
+const alt=(a,v)=>rand(a.filter(x=>typeof x==='object'?x.name!==v?.name:x!==v));
+const clone=x=>JSON.parse(JSON.stringify(x));
+const get=(obj,path)=>path.split('.').reduce((v,k)=>v?.[k],obj);
+function set(obj,path,val){let keys=path.split('.'),cur=obj;for(let i=0;i<keys.length-1;i++){if(!cur[keys[i]])cur[keys[i]]={};cur=cur[keys[i]]}cur[keys.at(-1)]=val}
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const GROUP_KEYS={identity:['name','age','skin','skinTexture','face','forehead','brows','eyeShape','iris','eyelids','lashes','nose','lips','cheeks','jaw','chin','ears','hairColor','hairLength','hairTexture','hairPart','babyHairs','eyeMakeup','faceMakeup','lipMakeup'],body:['height','weight','neck','collarbones','trapezius','shoulders','upperArms','forearms','elbows','wrists','bust','ribcage','waist','abdomen','navel','back','hips','glutes','thighs','knees','shins','calves','ankles','feet','hands','fingers','nails','measurements'],outfit:['dress','outfitControl'],accessories:['earrings','necklace','bracelets','rings','extras','shoes','bag'],pose:['posture','legsPose','armsPose','headPose','expression','gaze','poseControl','camera'],scene:['scene','lighting','mood','sceneControl']};
+const LOCK_META=[['identity','☺ Yüz & saç'],['body','♧ Vücut'],['outfit','✿ Kıyafet'],['accessories','◇ Takılar'],['pose','⌖ Poz & kamera'],['scene','☼ Sahne & ışık']];
+const MEASURES=[['shoulder','Omuz genişliği',31,49,'cm'],['chest','Göğüs çevresi',74,115,'cm'],['waist','Bel çevresi',55,101,'cm'],['hip','Kalça çevresi',78,121,'cm'],['inseam','İç bacak uzunluğu',65,91,'cm'],['thigh','Uyluk çevresi',39,72,'cm'],['calf','Baldır çevresi',27,49,'cm'],['neck','Boyun çevresi',26,41,'cm'],['bicep','Üst kol çevresi',20,40,'cm'],['wrist','El bileği çevresi',12,21,'cm'],['foot','Ayak uzunluğu',21,29,'cm']];
+const OUTFIT_CONTROLS=[['lace','Dantel yoğunluğu',0,100,'%'],['sheer','Transparan tül vurgusu',0,100,'%'],['neckline','Yaka açıklığı vurgusu',0,100,'%'],['length','Omuzdan etek ucuna tasarım uzunluğu',61,90,'cm'],['fit','Vücuda oturma derecesi',0,100,'%']];
+const POSE_CONTROLS=[['torso','Gövde dönüşü',-50,50,'°'],['headTilt','Baş eğimi',-25,25,'°'],['shoulder','Omuz açısı',-20,20,'°'],['stride','Yürüyüş adımı',0,50,'cm'],['lens','Lens odak uzaklığı',35,105,'mm'],['cameraHeight','Kamera yüksekliği',80,190,'cm']];
+const SCENE_CONTROLS=[['warmth','Işık sıcaklığı',0,100,'%'],['intensity','Ana ışık gücü',0,100,'%'],['blur','Arka plan bulanıklığı',0,100,'%'],['fill','Dolgu ışığı',0,100,'%']];
+const KEY='atelier-muse-v5';
+function localRead(key,fallback){try{return JSON.parse(localStorage.getItem(key))??fallback}catch{return fallback}}
+function localWrite(key,val){try{localStorage.setItem(key,JSON.stringify(val));return true}catch{return false}}
+function createMeasurements(h){const factor=h/165;return {shoulder:Math.round(39*factor+(Math.random()-.5)*6),chest:Math.round(92*factor+(Math.random()-.5)*16),waist:Math.round(73*factor+(Math.random()-.5)*15),hip:Math.round(98*factor+(Math.random()-.5)*17),inseam:Math.round(h*.455+(Math.random()-.5)*8),thigh:Math.round(55*factor+(Math.random()-.5)*12),calf:Math.round(36*factor+(Math.random()-.5)*8),neck:Math.round(32*factor+(Math.random()-.5)*5),bicep:Math.round(27*factor+(Math.random()-.5)*7),wrist:Math.round(16*factor+(Math.random()-.5)*3),foot:Math.round(24.5*factor+(Math.random()-.5)*2)}}
+function baseGenerate(){const p={name:rand(POOLS.names),age:18+Math.floor(Math.random()*8),height:155+Math.floor(Math.random()*27)};const bmi=19+Math.random()*8;p.weight=Math.round(bmi*Math.pow(p.height/100,2));for(const [k,v] of Object.entries(POOLS))if(k!=='names')p[k]=rand(v);p.dress=clone(rand(DRESSES));p.scene=clone(rand(SCENES));p.measurements=createMeasurements(p.height);p.outfitControl={lace:75,sheer:65,neckline:70,length:73,fit:85};p.poseControl={torso:20,headTilt:0,shoulder:3,stride:15,lens:70,cameraHeight:135};p.sceneControl={warmth:65,intensity:75,blur:25,fill:35};p.uid='char-'+Date.now().toString(36)+'-'+Math.random().toString(36).slice(2,8);return p}
+function normalize(m){let b=baseGenerate();if(!m||typeof m!=='object')return b;let p={...b,...m};p.age=Math.max(18,Math.min(25,Math.round(Number(p.age)||22)));p.height=Math.max(145,Math.min(195,Math.round(Number(p.height)||165)));p.weight=Math.max(40,Math.min(110,Math.round(Number(p.weight)||60)));if(!POOLS.skin.includes(p.skin))p.skin=b.skin;p.dress={...b.dress,...p.dress};p.scene={...b.scene,...p.scene};p.measurements={...b.measurements,...p.measurements};p.outfitControl={...b.outfitControl,...p.outfitControl};p.poseControl={...b.poseControl,...p.poseControl};p.sceneControl={...b.sceneControl,...p.sceneControl};p.uid=typeof p.uid==='string'&&p.uid.length<80?p.uid:b.uid;return p}
+let archived=localRead(KEY+'-saved',null);if(!Array.isArray(archived)){let old=localRead('atelier-muse-saved-v4',[]);archived=Array.isArray(old)?old.slice(0,100).map(normalize):[]}
+archived=archived.filter(x=>x&&typeof x==='object'&&x.uid).slice(0,100);
+let locks={identity:false,body:false,outfit:false,accessories:false,pose:false,scene:false,...localRead(KEY+'-locks',{})};
+let current=normalize(localRead(KEY+'-current',null));
+let count=Math.max(Number(localRead(KEY+'-count',0))||0,1);let active='details';let history=[];let manualPrompt=false;let photoData=null;let photoModelUID=null;let busy=false;let toastTimer;
+function toast(t){let e=$('toast');e.textContent=t;e.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>e.classList.remove('show'),2500)}
+function persist(){localWrite(KEY+'-current',current);localWrite(KEY+'-saved',archived);localWrite(KEY+'-locks',locks);localWrite(KEY+'-count',count)}
+function checkpoint(){history.push(clone(current));if(history.length>25)history.shift();$('undoButton').disabled=false}
+function changed(msg){manualPrompt=false;persist();render();if(msg)toast(msg)}
+function renewCharacter(){checkpoint();const fresh=baseGenerate();for(const [part,locked] of Object.entries(locks))if(locked)for(const k of GROUP_KEYS[part])fresh[k]=clone(current[k]);current=fresh;count++;changed('Kilitli özellikler korunarak yeni karakter üretildi.')}
+function randomPart(part){if(locks[part])return toast('Bu kategori kilitli; önce kilidi kaldır.');checkpoint();const newModel=baseGenerate();for(const key of GROUP_KEYS[part])current[key]=clone(newModel[key]);changed('Seçilen kategori yeniden üretildi.')}
+function randomPoseScene(){if(locks.pose&&locks.scene)return toast('Poz ve sahne kilitli.');checkpoint();let src=baseGenerate();for(let k of ['pose','scene'])if(!locks[k])for(const f of GROUP_KEYS[k])current[f]=clone(src[f]);changed('Poz, kamera ve sahne yenilendi.')}
+function undo(){if(!history.length)return toast('Geri alınacak işlem yok.');current=history.pop();changed('Önceki tasarıma dönüldü.')}
+function setField(path,value){checkpoint();set(current,path,value);changed('Özellik güncellendi.')}
+function picker(label,path,pool){const val=get(current,path);const opts=[...new Set([val,...pool])];return `<div class="editrow"><label class="editlabel" for="field-${esc(path)}">${esc(label)}</label><select class="select" id="field-${esc(path)}" data-path="${esc(path)}">${opts.map(x=>`<option value="${esc(x)}" ${x===val?'selected':''}>${esc(x)}</option>`).join('')}</select></div>`}
+function textField(label,path,multiline=false){let v=get(current,path)??'';return `<div class="editrow"><label class="editlabel" for="text-${esc(path)}">${esc(label)}</label>${multiline?`<textarea class="area" id="text-${esc(path)}" data-path="${esc(path)}">${esc(v)}</textarea>`:`<input class="input" id="text-${esc(path)}" data-path="${esc(path)}" value="${esc(v)}" maxlength="400">`}</div>`}
+function rangeField(label,path,min,max,unit){let v=Number(get(current,path));if(!Number.isFinite(v))v=min;return `<div class="editrow"><label class="editlabel" for="range-${esc(path)}"><span>${esc(label)}</span><output>${v}${esc(unit)}</output></label><input class="range" id="range-${esc(path)}" type="range" min="${min}" max="${max}" step="1" value="${v}" data-path="${esc(path)}" data-number="true" data-unit="${esc(unit)}"></div>`}
+function card(title,body,span=false){return `<section class="card editorcard ${span?'span2':''}"><h3>${title}</h3>${body}</section>`}
+function renderProfile(){let p=current;$('generatedCount').textContent=count.toLocaleString('tr-TR');$('serial').textContent='#'+String(count).padStart(4,'0');$('personName').textContent=p.name;$('personAge').textContent=p.age+' yaş';$('personHeight').textContent=p.height+' cm';$('personWeight').textContent=p.weight+' kg';$('featureCount').textContent=(GROUPS.reduce((s,g)=>s+g.fields.length,0)+MEASURES.length+OUTFIT_CONTROLS.length+POSE_CONTROLS.length+SCENE_CONTROLS.length)+'+';$('summaryFace').textContent=p.skin+' · '+p.hairColor+' saç';$('summaryDress').textContent=p.dress.name+' · '+p.dress.color;$('summaryScene').textContent=p.scene.name+' · '+p.expression;$('saveModel').textContent=archived.some(x=>x.uid===p.uid)?'♥ Kaydı güncelle':'♡ Karakteri kaydet';$('undoButton').disabled=!history.length}
+function renderLocks(){$('lockGrid').innerHTML=LOCK_META.map(([k,label])=>`<label class="lockitem"><input type="checkbox" data-lock="${k}" ${locks[k]?'checked':''}><span class="ico">${locks[k]?'🔒':'🔓'}</span><span>${label}</span></label>`).join('')}
+function renderDetails(){let all=[...GROUPS,{title:'Sayısal beden ölçüleri',icon:'◫',fields:[['Boy (cm)','height'],['Kilo (kg)','weight'],...MEASURES.map(([k,label])=>[label,'measurements.'+k])]},{title:'Kıyafet, poz ve sahne hassas ayarları',icon:'⚙',fields:[...OUTFIT_CONTROLS.map(([k,label])=>[label,'outfitControl.'+k]),...POSE_CONTROLS.map(([k,label])=>[label,'poseControl.'+k]),...SCENE_CONTROLS.map(([k,label])=>[label,'sceneControl.'+k])]}];let open=[...document.querySelectorAll('#detailSections details')].map((e,i)=>e.open?i:-1);$('detailCount').textContent=all.reduce((n,g)=>n+g.fields.length,0)+' özellik';$('detailSections').innerHTML=all.map((g,i)=>`<details class="detail" ${open.length?(open.includes(i)?'open':''):(i===0||i===5||i===7?'open':'')}><summary><span class="sectitle"><span class="sectionicon">${g.icon}</span><span><h3>${String(i+1).padStart(2,'0')} · ${g.title}</h3><small>${g.fields.length} özellik</small></span></span><span aria-hidden="true">⌄</span></summary><div class="detail-body">${g.fields.map(([label,path])=>`<div class="datarow"><span>${esc(label)}</span><span>${esc(get(current,path))}${path==='height'?' cm':path==='weight'?' kg':path.startsWith('measurements.')?' cm':''}</span></div>`).join('')}</div></details>`).join('')}
+function renderBody(){let basics=card('Temel bilgiler',textField('Karakter adı','name')+rangeField('Yaş','age',18,25,' yaş')+rangeField('Boy','height',145,195,' cm')+rangeField('Kilo','weight',40,110,' kg')+'<p class="groupnote">Ölçüler karakter tasarım verisidir; gerçek insan ölçümü veya sağlık değerlendirmesi değildir.</p>');let numerical=card('Santimetre ile beden oranları',MEASURES.map(([k,n,a,b,u])=>rangeField(n,'measurements.'+k,a,b,u)).join(''));let bodyKeys=GROUPS.slice(2,5);let spec=bodyKeys.map(g=>card(g.title,g.fields.filter(([label,path])=>POOLS[path]).map(([label,path])=>picker(label,path,POOLS[path])).join(''))).join('');$('bodyEditor').innerHTML=basics+numerical+spec}
+function renderFace(){let face=GROUPS.slice(0,2);$('faceEditor').innerHTML=face.map(g=>card(g.title,g.fields.filter(([label,k])=>POOLS[k]).map(([label,key])=>picker(label,key,POOLS[key])).join(''))).join('')}
+function toDressColor(color){let v=color.toLocaleLowerCase('tr-TR');if(v.includes('pembe'))return '#dba6c1';if(v.includes('bordo')||v.includes('mürdüm'))return '#792e4e';if(v.includes('siyah'))return '#28232c';if(v.includes('yeşil'))return '#247969';if(v.includes('kırmızı'))return '#c64358';if(v.includes('lila'))return '#bda0e5';if(v.includes('mavi')||v.includes('lacivert'))return '#40649e';if(v.includes('krem')||v.includes('beyaz'))return '#e7d8cb';if(v.includes('şampanya'))return '#c9ad81';return '#9e6d9c'}
+function renderOutfit(){let d=current.dress,color=toDressColor(d.color);$('outfitPreview').innerHTML=`<svg class="dress-art" viewBox="0 0 115 145" aria-hidden="true"><path d="M40 8 Q57 21 75 8 L85 35 L78 71 L99 130 Q57 140 14 130 L36 71 L29 35Z" fill="${color}" stroke="#f5d7e6" stroke-opacity=".75" stroke-width="2"/><path d="M38 9 Q57 40 77 9" fill="none" stroke="#fff2" stroke-width="3"/><path d="M32 36 Q56 48 82 36" stroke="#fff9" stroke-width="4" stroke-dasharray="3 5"/><path d="M39 75 Q57 83 77 75" stroke="#fff9" stroke-dasharray="3 4"/><path d="M25 112 Q58 122 91 112" stroke="#fff8" stroke-width="4" stroke-dasharray="2 5"/></svg><div><h3>${esc(d.name)}</h3><p><span class="palette" style="background:${color}"></span>${esc(d.color)}</p><p style="margin-top:8px">${esc(d.neck)}</p><small>Şematik kıyafet ikonu, AI görseli değil</small></div>`;
+let template=card('Hazır elbise seçimi',`<div class="editrow"><label class="editlabel" for="dressTemplate">Elbise koleksiyonu (${DRESSES.length} model)</label><select class="select" id="dressTemplate">${DRESSES.map((x,i)=>`<option value="${i}" ${x.name===d.name?'selected':''}>${esc(x.name)}</option>`).join('')}</select></div><p class="groupnote">Hazır şablon seçimi mevcut elbise ayrıntılarını değiştirir; kadın karakterin anatomisini korur.</p>`);
+let dressFields=[['Elbise adı','dress.name'],['Ana renk','dress.color'],['Kumaş ve opak astar','dress.fabric'],['Yaka ve dekolte','dress.neck'],['Transparan tül paneller','dress.panels'],['Sırt ve bağcıklar','dress.back'],['Etek kesimi / mini uzunluğu','dress.hem'],['Dantel, boncuk ve aplikeler','dress.details'],['Fermuar, dikiş ve kapanış','dress.closure']];let style=card('Elbisenin bütün detayları',dressFields.map(([label,path])=>textField(label,path,true)).join(''));let settings=card('Dantel ve siluet kontrolü',OUTFIT_CONTROLS.map(([k,l,a,b,u])=>rangeField(l,'outfitControl.'+k,a,b,u)).join('')+'<p class="groupnote">Transparan bölümler moda amaçlı tül/danteldir; elbisenin gerekli yerlerinde opak astar korunur.</p>');let accKeys=GROUPS[6].fields;let acc=card('Takı, çanta ve ayakkabı',accKeys.map(([label,path])=>picker(label,path,POOLS[path])).join(''));$('outfitEditor').innerHTML=template+settings+style+acc}
+function renderPose(){let pos=GROUPS[7].fields.map(([label,path])=>picker(label,path,POOLS[path])).join('');let camera=picker('Kamera ve kadraj','camera',POOLS.camera);$('poseEditor').innerHTML=card('Poz ve ifade',pos)+card('Kamera ve lens',camera+POSE_CONTROLS.map(([k,l,a,b,u])=>rangeField(l,'poseControl.'+k,a,b,u)).join('')+'<p class="groupnote">Kadrajda baş, elbise, bacaklar ve ayakkabıların tamamen görünmesi önceliklidir.</p>')}
+function renderScene(){let scenelist=card('Hazır mekânlar',`<div class="editrow"><label class="editlabel" for="sceneTemplate">Mekân seç</label><select class="select" id="sceneTemplate">${SCENES.map((s,i)=>`<option value="${i}" ${s.name===current.scene.name?'selected':''}>${esc(s.name)}</option>`).join('')}</select></div>`+[ ['Mekân adı','scene.name'],['Arka plan tanımı','scene.place'],['Dekor ve çevre nesneleri','scene.props'],['Günün zamanı','scene.time']].map(([a,b])=>textField(a,b,true)).join(''));let settings=card('Atmosfer ve ışık',picker('Ana ışık türü','lighting',POOLS.lighting)+picker('Atmosfer','mood',POOLS.mood)+SCENE_CONTROLS.map(([k,l,a,b,u])=>rangeField(l,'sceneControl.'+k,a,b,u)).join(''));$('sceneEditor').innerHTML=scenelist+settings}
+function promptFor(m){let lines=[`${m.name.toLocaleUpperCase('tr-TR')} — ${m.age} YAŞINDA YETİŞKİN KADIN`, `Boy: ${m.height} cm; ağırlık: ${m.weight} kg. Tek yetişkin kişi.`,...GROUPS.map((g,i)=>`\n${String(i+1).padStart(2,'0')} · ${g.title.toLocaleUpperCase('tr-TR')}\n${g.fields.map(([lab,key])=>`${lab}: ${get(m,key)}.`).join('\n')}`),`\n10 · SAYISAL VÜCUT ÖLÇÜLERİ\n${MEASURES.map(([k,label])=>`${label}: ${m.measurements[k]} cm.`).join('\n')}`,`\n11 · KIYAFET İNCE AYARLARI\n${OUTFIT_CONTROLS.map(([k,label,, ,unit])=>`${label}: ${m.outfitControl[k]}${unit}.`).join('\n')}`,`\n12 · POZ VE KAMERA İNCE AYARLARI\n${POSE_CONTROLS.map(([k,label,,,unit])=>`${label}: ${m.poseControl[k]}${unit}.`).join('\n')}`,`\n13 · SAHNE VE IŞIK İNCE AYARLARI\n${SCENE_CONTROLS.map(([k,label,,,unit])=>`${label}: ${m.sceneControl[k]}${unit}.`).join('\n')}`,`\nFOTOGERÇEKÇİ MODA ÇEKİMİ TALİMATI: Tek yetişkin kadın. Baştan ayağa tam boy görünüm; saç, eller, tüm elbise, bacaklar, topuklar ve ayakkabılar kadrajda eksiksiz. Gerçekçi vücut oranları ve doğal anatomi, gerçekçi cilt, saç telleri ve kumaş mikrodokuları. Dantel desenleri ve ince transparan tül net seçilsin; opak astar mahrem bölgeleri örtsün. Kıyafet gerçekçi kesim ve dikişlerle bedene uyumlu olsun. Poz, bakış, yüz ifadesi, arka plan, kamera yüksekliği, lens ve sıcaklık yönergelerine sadık kal. Editoryal moda fotoğrafı, yumuşak gölgeler, doğal ışık yansımaları, yüksek çözünürlük, ayaklar kırpılmasın. Başka kişi, logo, metin veya filigran olmasın.`];return lines.join('\n\n')}
+function renderPrompt(){let el=$('promptText');if(!manualPrompt)el.value=promptFor(current);$('promptCount').textContent=el.value.length.toLocaleString('tr-TR')+' karakter · '+el.value.trim().split(/\s+/).length.toLocaleString('tr-TR')+' sözcük'}
+function renderArchive(){$('archiveCount').textContent=archived.length?'('+archived.length+')':'';if(!archived.length){$('savedList').innerHTML='<div class="card editorcard span2" style="text-align:center;padding:60px 20px"><h3>♡ Henüz kaydedilmiş karakter yok</h3><p class="muted">Bir karakterin bütün özelliklerini yerel hafızaya almak için kaydet düğmesine bas.</p></div>';return}$('savedList').innerHTML=archived.slice().reverse().map(x=>`<article class="card fav"><div style="display:flex;justify-content:space-between"><h3>${esc(x.name)}</h3><span class="quickpill">${esc(x.age)} yaş</span></div><p>${esc(x.height)} cm · ${esc(x.weight)} kg<br>${esc(x.dress?.name??'Mini elbise')}<br>${esc(x.scene?.name??'Moda stüdyosu')}</p><div class="buttonline"><button class="btn" data-action="load" data-id="${esc(x.uid)}">↗ Aç</button><button class="btn" data-action="export" data-id="${esc(x.uid)}">↓ JSON</button><button class="btn danger" data-action="delete" data-id="${esc(x.uid)}">✕ Sil</button></div></article>`).join('')}
+function render(){renderProfile();renderLocks();renderDetails();renderBody();renderFace();renderOutfit();renderPose();renderScene();renderPrompt();renderArchive()}
+function tab(n){active=n;document.querySelectorAll('[data-tab]').forEach(x=>{let on=x.dataset.tab===n;x.classList.toggle('active',on);x.setAttribute('aria-selected',String(on))});document.querySelectorAll('.view').forEach(x=>x.classList.toggle('active',x.id===n+'View'));if(n==='prompt')renderPrompt()}
+function save(){let i=archived.findIndex(x=>x.uid===current.uid);if(i>=0){archived[i]=clone(current);toast('Kaydedilmiş karakter güncellendi.')}else{archived.push(clone(current));if(archived.length>100)archived.shift();toast('Karakter bütün detaylarıyla kaydedildi.')}persist();renderProfile();renderArchive()}
+function downloadText(content,filename,mime='text/plain;charset=utf-8'){const b=new Blob([content],{type:mime});let url=URL.createObjectURL(b),a=document.createElement('a');a.href=url;a.download=filename;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1500)}
+async function copyPrompt(){try{await navigator.clipboard.writeText($('promptText').value);toast('Prompt panoya kopyalandı.')}catch{tab('prompt');$('promptText').focus();$('promptText').select();toast('Metin seçildi. Uzun bas veya Ctrl+C ile kopyala.')}}
+function importCharacter(obj){if(!obj||typeof obj!=='object'||Array.isArray(obj)||!obj.dress||!obj.scene)throw Error('Geçerli bir karakter JSON dosyası değil.');checkpoint();current=normalize(obj);current.uid='import-'+Date.now().toString(36);changed('Karakter dosyası içe aktarıldı.');tab('details')}
+function validEndpoint(s){if(s.startsWith('/')&&!s.startsWith('//'))return s;if(/^https:\/\/[^\s]+$/i.test(s))return s;if(/^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?\//i.test(s))return s;throw Error('Yalnızca göreli, HTTPS veya yerel localhost endpoint kullan.')}
+function showStatus(text,kind=''){$('connectionStatus').className='status '+kind;$('connectionStatus').textContent=text}
+// V6: Üç provider yolu; API anahtarsız Puter, ücretsiz yerel ComfyUI, eski özel sunucu.
+function provider(){return $('imageProvider').value}
+function providerControls(){
+  $('puterOptions').hidden=provider()!=='puter';$('comfyOptions').hidden=provider()!=='comfy';$('apiOptions').hidden=provider()!=='openai';
+  if(provider()==='puter')showStatus('Puter hesabı için aylık ücretsiz kullanım hakkı olabilir. Demo işaretliyse örnek resim döner.');
+  else if(provider()==='comfy')showStatus('Yerel Python köprüsünü ve ComfyUI’yi başlat; bağlantı kontrolüyle checkpoint listesini al.');
+  else showStatus('Özel API sunucusu seçildi. Ücret oluşabilir.');
+}
+let puterLoadPromise=null;
+function loadPuter(){
+  if(location.protocol==='file:')throw Error('Puter, indirilen file:// sayfalarında girişe izin vermiyor. HTML’yi bir HTTPS siteye yükle veya localhost üzerinde çalıştır. ZIP dosyasındaki yönergelere bak.');
+  if(window.puter?.ai?.txt2img)return Promise.resolve(window.puter);
+  if(!puterLoadPromise)puterLoadPromise=new Promise((resolve,reject)=>{
+    const s=document.createElement('script');s.src='https://js.puter.com/v2/';s.async=true;
+    let done=false;const timer=setTimeout(()=>{if(!done){done=true;reject(Error('Puter SDK yüklenemedi; interneti veya reklam/izleyici engelini kontrol et.'))}},20000);
+    s.onload=()=>{if(done)return;done=true;clearTimeout(timer);window.puter?.ai?.txt2img?resolve(window.puter):reject(Error('Puter arayüzü hazır değil.'))};
+    s.onerror=()=>{if(done)return;done=true;clearTimeout(timer);reject(Error('Puter yükleme adresine ulaşılamadı.'))};document.head.appendChild(s)
+  }).catch(e=>{puterLoadPromise=null;throw e});
+  return puterLoadPromise;
+}
+async function puterSignIn(){
+  try{showStatus('Puter giriş ekranı hazırlanıyor...');const p=await loadPuter();if(!(await p.auth.isSignedIn()))await p.auth.signIn();showStatus('Puter oturumu açıldı. Ücretsiz aylık kredi durumunu hesabından kontrol et.','good')}
+  catch(e){showStatus('Puter girişi: '+(e?.message||String(e)),'error')}
+}
+async function checkComfy(){
+ const res=await fetch('/api/local/status');if(!res.ok)throw Error('V6 yerel sunucusu bulunamadı. ZIP paketindeki v6_yerel_sunucu.py ile başlat.');
+ const status=await res.json();if(!status.online)throw Error(status.error||'ComfyUI çalışmıyor. Önce ComfyUI programını başlat.');
+ const listRes=await fetch('/api/local/models');const data=await listRes.json();
+ if(!listRes.ok)throw Error(data.error||'Checkpoint listesi getirilemedi.');const select=$('comfyModel');select.replaceChildren();
+ if(!data.models?.length){select.add(new Option('Yüklü model bulunamadı',''));throw Error('ComfyUI checkpoints klasörüne bir model yerleştir.');}
+ for(const name of data.models)select.add(new Option(name,name));showStatus('ComfyUI hazır. '+data.models.length+' checkpoint kullanılabilir.','good');
+}
+async function testConnection(){
+ try{
+  if(provider()==='puter'){
+   let p=await loadPuter();let signedIn=await p.auth.isSignedIn();showStatus(signedIn?'Puter SDK ve hesap bağlantısı hazır. Kullanım kotası hesaba bağlıdır.':'Puter SDK çalışıyor. Giriş yapıp hesabının ücretsiz kullanım hakkını kontrol et.',signedIn?'good':'');
+  }else if(provider()==='comfy')await checkComfy();
+  else{let endpoint=validEndpoint($('apiUrl').value.trim());if(endpoint==='/api/generate-image'){const res=await fetch('/api/health');const json=await res.json();if(res.ok&&json.configured)showStatus('Özel sunucu hazır, API anahtarı tanımlı.','good');else showStatus('Özel sunucu açık fakat API anahtarı tanımlı değil.','error')}else showStatus('Özel uç nokta biçimi doğru. İstek sırasında bağlantı sınanacak.');}
+ }catch(e){showStatus('Bağlantı sorunu: '+(e?.message||String(e)),'error')}
+}
+function placeImage(src,caption){
+  photoData=src;photoModelUID=current.uid;$('imageOutput').replaceChildren();
+  const figure=document.createElement('figure');figure.style='margin:0;max-width:100%';let img=document.createElement('img');img.alt=current.name+' — '+caption;img.src=src;img.onerror=()=>showStatus('Görsel bağlantısı yüklenemedi. Servisin geçici resim URL’si süresi dolmuş olabilir.','error');
+  let fig=document.createElement('figcaption');fig.className='form-note';fig.textContent=caption;figure.append(img,fig);$('imageOutput').append(figure);$('downloadImage').disabled=false;
+}
+// V6.2: Provider-specific arguments, compact prompt option and actionable error reporting.
+function isGeminiImage(model){return /gemini/i.test(model)}
+function puterModelOptions(model,demo){
+ const opts={model,test_mode:demo};
+ const [w,h]=$('puterRatio').value.split(':').map(Number);
+ // A subset of providers rejects arbitrary aspect ratios. Omit ratio unless known compatible.
+ if(!$('puterCompatible').checked || isGeminiImage(model))opts.ratio={w,h};
+ // For OpenAI, quality low helps reduce cost when a model offers that option.
+ if(model.startsWith('openai/'))opts.quality='low';
+ return opts;
+}
+function isFluxImage(model){return /flux/i.test(model)}
+// V6.2: FLUX prioritizes a concise, direct description of the visual subject.
+// Keep the subject explicitly female in English, then append the character's own details.
+function fluxWomanPrompt(m){
+ const opening=`Photorealistic head-to-toe editorial fashion photo of EXACTLY ONE ADULT WOMAN, age ${m.age}. The main subject is a young adult WOMAN, a female fashion model named ${m.name}. Feminine face, naturally feminine body proportions, elegant women's mini dress, long styled hair. Show the entire female model from her head down to her shoes. No other people in the photograph. `;
+ const details=compactFashionPrompt(m);
+ const closing=' Main subject throughout the entire image: this same adult WOMAN. Professional fashion photography, realistic female anatomy, natural facial expression, authentic fabric texture, full-length portrait.';
+ return opening+details+closing;
+}
+function compactFashionPrompt(m){
+ // Preserve important appearance/garment/scene attributes while avoiding 100+ micro-measurements.
+ const pairs=[
+  ['ten',m.skin],['cilt',m.skinTexture],['yüz',m.face],['göz şekli',m.eyeShape],['göz rengi',m.iris],
+  ['kaş',m.brows],['burun',m.nose],['dudak',m.lips],
+  ['saç',`${m.hairLength} ${m.hairColor}; ${m.hairTexture}; ${m.hairPart}`],
+  ['boy',`${m.height} cm`],['vücut',`${m.shoulders} omuzlar, ${m.bust} göğüs, ${m.waist} bel, ${m.abdomen} karın, ${m.hips} kalça, ${m.thighs} uyluk, ${m.calves} baldır`],
+  ['elbise',`${m.dress.color} ${m.dress.name}; ${m.dress.fabric}; ${m.dress.neck}; ${m.dress.panels}; ${m.dress.back}; ${m.dress.hem}; ${m.dress.details}`],
+  ['aksesuarlar',`${m.earrings}; ${m.necklace}; ${m.bracelets}; ${m.nails}; ${m.shoes}; ${m.bag}`],
+  ['poz',`${m.posture}; ${m.legsPose}; ${m.armsPose}; ${m.headPose}; ${m.expression}; ${m.gaze}`],
+  ['mekân',`${m.scene.name}; ${m.scene.place}; ${m.lighting}; ${m.camera}`]
+ ];
+ return `${m.age} yaşında yetişkin kadın ${m.name}. Baştan ayağa, ayakkabılar da görünecek şekilde tam boy fotogerçekçi editoryal moda fotoğrafı. `+
+ pairs.map(([k,v])=>`${k}: ${v}`).join('. ')+
+ '. Tek bir yetişkin kişi, doğal anatomi, gerçek cilt ve kumaş dokusu, çiçekli dantel ve yarı saydam tül, uygun opak astar, doğal gölgeler. Kırpılmış ayak, yazı, logo ve filigran olmasın.';
+}
+function puterErrorText(e,model,promptLen){
+ let parts=[`Model: ${model}`,`Prompt uzunluğu: ${promptLen} karakter`];
+ for(const k of ['name','message','code','status','statusCode','status_code','error'])if(e?.[k]!=null){const v=typeof e[k]==='object'?JSON.stringify(e[k]):String(e[k]);parts.push(`${k}: ${v}`)}
+ if(!parts.some(x=>x.startsWith('message:')))parts.push(String(e));
+ return parts.join('\n').slice(0,3500);
+}
+function showPuterError(e,model,promptLen){
+ const details=puterErrorText(e,model,promptLen);
+ $('puterErrorText').textContent=details;
+ $('puterErrorPanel').style.display='block';
+ const msg=(e?.message||String(e));
+ const s=(msg+' '+(e?.code||'')).toLowerCase();
+ let hint='';
+ if(/credit|fund|balance|billing|insufficient|payment|402|quota|limit/.test(s))hint=' Hesap bakiyeni/kotanı kontrol et. Ücretsiz kullanım her modelde aynı olmayabilir.';
+ else if(/model|not found|404|unsupported|invalid/.test(s))hint=' Model kimliği veya destek durumu farklı olabilir. Gemini ya da başka modeli seç.';
+ else if(/ratio|size|aspect|dimension|parameter|400/.test(s))hint=' Model uyumluluğunu artır seçeneğini işaretle, kısa prompt dene.';
+ else if(/safety|content|moderation|policy/.test(s))hint=' Servis içerik güvenliği isteği reddetmiş olabilir. Güvenli ve sade bir moda promptuyla sınama yap.';
+ else if(/timeout|network|fetch|503|429|busy/.test(s))hint=' Ağ, kapasite veya hız limiti söz konusu olabilir. Bir süre sonra tekrar dene.';
+ showStatus('Puter model hatası: '+msg+hint+' Aşağıdan hata ayrıntısını kopyalayabilirsin.','error');
+}
+async function producePuter(quickTest=false){
+ const p=await loadPuter();const demo=$('puterDemo').checked;const model=$('puterModel').value;
+ if(!demo){
+  if(!(await p.auth.isSignedIn()))await p.auth.signIn();
+  const msg=quickTest?'Kısa test de gerçek AI isteğidir; Puter kotandan/kredinden düşebilir. Devam edilsin mi?':'Gerçek Puter görseli, hesabının kullanılabilir kotasını/kredisini kullanabilir. Devam edilsin mi?';
+  if(!confirm(msg))throw Error('İstek iptal edildi.');
+ }
+ const opts=puterModelOptions(model,demo);
+ const useShort=!quickTest&&!isGeminiImage(model)&&$('puterShortPrompt').checked;
+ const prompt=quickTest?'Photorealistic full-length fashion photograph showing EXACTLY ONE ADULT WOMAN aged 25. A female fashion model wearing an elegant opaque blue dress and high heels. Entire woman visible, head to toe, feminine facial features, neutral beige studio background, natural light.':isFluxImage(model)?fluxWomanPrompt(current):useShort?compactFashionPrompt(current):$('promptText').value;
+ $('puterErrorPanel').style.display='none';
+ showStatus(demo?'Kredi harcamayan örnek test isteniyor...':quickTest?'Model kısa test promptuyla sınanıyor...':'Puter ile gerçek karakter görseli isteniyor...');
+ let result;
+ try{result=await p.ai.txt2img(prompt,opts)}catch(e){showPuterError(e,model,prompt.length);return}
+ if(!result?.src){showPuterError(new Error('Görsel adresi döndürülmedi.'),model,prompt.length);return}
+ placeImage(result.src,demo?'TEST — karakterin gerçek görseli değil':quickTest?'MODEL TESTİ — örnek yetişkin moda fotoğrafı':'Puter ile üretilmiş karakter görseli · '+model);
+ showStatus(demo?'Örnek test görseli geldi. Test modunda Puter, prompttaki kadın yerine farklı bir kişi (erkek de olabilir) gösterebilir.':'Görsel üretildi: '+model,'good');
+}
+
+async function produceComfy(){
+ const checkpoint=$('comfyModel').value;if(!checkpoint)throw Error('Önce bağlantıyı kontrol edip checkpoint seç.');
+ showStatus('ComfyUI yerel işlem kuyruğunda. İşlem bilgisayar hızına bağlı…');
+ const controller=new AbortController();let timer=setTimeout(()=>controller.abort(),300000);
+ let res;try{res=await fetch('/api/local/generate',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:$('promptText').value,checkpoint,size:$('comfySize').value}),signal:controller.signal})}finally{clearTimeout(timer)}
+ const payload=await res.json().catch(()=>({error:'Yerel sunucu JSON döndürmedi.'}));if(!res.ok)throw Error(payload.error||'ComfyUI sunucu hatası');
+ if(!payload.b64_json)throw Error('Yerel sunucu görsel vermedi');placeImage('data:image/png;base64,'+payload.b64_json,'Yerel ComfyUI ile oluşturuldu • API maliyeti yok');showStatus('Ücretsiz yerel görüntü oluşturuldu.','good');
+}
+async function produceOpenAI(){
+ const endpoint=validEndpoint($('apiUrl').value.trim());if(!confirm('Bu istek ücretli API kullanımına neden olabilir. Devam edilsin mi?'))throw Error('İstek iptal edildi.');
+ const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),180000);
+ let res;try{res=await fetch(endpoint,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({prompt:$('promptText').value,model:$('apiModel').value,quality:$('apiQuality').value,size:$('apiSize').value}),signal:controller.signal})}finally{clearTimeout(timeout)}
+ const payload=await res.json().catch(()=>({error:'Geçersiz JSON.'}));if(!res.ok)throw Error(payload.error?.message||payload.error||'HTTP '+res.status);
+ const raw=payload.b64_json||payload.image_base64||payload.image||payload.data?.[0]?.b64_json;const url=payload.image_url||payload.data?.[0]?.url;
+ if(raw)placeImage(raw.startsWith('data:')?raw:'data:'+(payload.mime||'image/png')+';base64,'+raw,'Özel API ile oluşturuldu');else if(url&&/^https:\/\//.test(url))placeImage(url,'Özel API ile oluşturuldu');else throw Error('Yanıtta geçerli görsel yok');showStatus('Özel API görüntüsü oluşturuldu.','good');
+}
+async function generateImage(){
+ if(busy)return;busy=true;const btn=$('generateImage');btn.disabled=true;btn.textContent='⌛ İşleniyor…';
+ try{if(provider()==='puter')await producePuter();else if(provider()==='comfy')await produceComfy();else await produceOpenAI()}
+ catch(e){showStatus('Görsel üretilemedi: '+(e?.name==='AbortError'?'Zaman aşımı.':e?.message||String(e)),'error')}
+ finally{busy=false;btn.disabled=false;btn.textContent='✦ Görsel üret'}
+}
+async function downloadPhoto(){
+ if(!photoData)return;
+ try{
+  if(photoData.startsWith('data:')){let a=document.createElement('a');a.href=photoData;a.download='atelier-'+current.name.toLocaleLowerCase('tr-TR')+'.png';document.body.append(a);a.click();a.remove();toast('PNG indirildi.');return}
+  let resp=await fetch(photoData,{mode:'cors'});if(!resp.ok)throw Error('HTTP '+resp.status);const blob=await resp.blob();const url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download='atelier-'+current.name+'.'+(blob.type.includes('jpeg')?'jpg':'png');document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),5000);toast('Görsel indirildi.');
+ }catch(e){window.open(photoData,'_blank','noopener,noreferrer');toast('Doğrudan indirme engellendi; resmi yeni sekmeden kaydet.')}
+}
+$('newModel').addEventListener('click',renewCharacter);
+$('randomOutfit').addEventListener('click',()=>{if(locks.outfit&&locks.accessories)return toast('Kıyafet ve aksesuarlar kilitli.');checkpoint();const fresh=baseGenerate();for(const cat of ['outfit','accessories'])if(!locks[cat])for(const k of GROUP_KEYS[cat])current[k]=clone(fresh[k]);changed('Kilitsiz kıyafet ve aksesuarlar değiştirildi.')});
+$('randomPose').addEventListener('click',randomPoseScene);
+$('randomFace').addEventListener('click',()=>{if(locks.pose)return toast('Poz ve ifade kategorisi kilitli.');checkpoint();current.expression=alt(POOLS.expression,current.expression);current.gaze=rand(POOLS.gaze);current.headPose=rand(POOLS.headPose);changed('Yüz ifadesi ve bakış değiştirildi.')});
+$('saveModel').addEventListener('click',save);$('undoButton').addEventListener('click',undo);
+$('exportJson').addEventListener('click',()=>downloadText(JSON.stringify(current,null,2),current.name+'-atelier-v6.json','application/json;charset=utf-8'));
+$('importButton').addEventListener('click',()=>$('importFile').click());
+$('importFile').addEventListener('change',async e=>{let f=e.target.files?.[0];if(!f)return;try{if(f.size>1000000)throw Error('JSON dosyası çok büyük.');importCharacter(JSON.parse(await f.text()))}catch(err){toast('İçe aktarım başarısız: '+err.message)}e.target.value=''});
+$('lockGrid').addEventListener('change',e=>{const input=e.target.closest('[data-lock]');if(!input)return;locks[input.dataset.lock]=input.checked;localWrite(KEY+'-locks',locks);renderLocks();toast(input.checked?'Kategori kilitlendi.':'Kategori kilidi kaldırıldı.')});
+$('tabbar').addEventListener('click',e=>{let btn=e.target.closest('[data-tab]');if(btn)tab(btn.dataset.tab)});
+$('main')?.addEventListener?.('click',()=>{});
+// Editörlerde değişiklik: giriş sırasında kaydırıcı değeri anında gösterilir; değişiklik tamamlanınca kaydedilir.
+for(const root of ['bodyEditor','faceEditor','outfitEditor','poseEditor','sceneEditor']){
+  $(root).addEventListener('input',e=>{let el=e.target;if(el.matches('input[type="range"][data-path]')){let out=el.parentElement.querySelector('output');if(out)out.textContent=el.value+(el.dataset.unit||'')}});
+  $(root).addEventListener('change',e=>{let el=e.target;if(el.id==='dressTemplate'){checkpoint();current.dress=clone(DRESSES[Number(el.value)]);changed('Yeni elbise şablonu uygulandı.');return}if(el.id==='sceneTemplate'){checkpoint();current.scene=clone(SCENES[Number(el.value)]);changed('Mekân şablonu değiştirildi.');return}let path=el.dataset.path;if(!path)return;let value=el.dataset.number==='true'?Number(el.value):el.value;if(path==='age')value=Math.max(18,Math.min(25,Math.round(value)));setField(path,value)})
+}
+$('savedList').addEventListener('click',e=>{let b=e.target.closest('[data-action]');if(!b)return;let i=archived.findIndex(x=>x.uid===b.dataset.id);if(i<0)return;if(b.dataset.action==='load'){checkpoint();current=normalize(clone(archived[i]));changed('Arşivdeki karakter açıldı.');tab('details')}else if(b.dataset.action==='delete'){archived.splice(i,1);persist();renderArchive();renderProfile();toast('Karakter arşivden silindi.')}else if(b.dataset.action==='export'){downloadText(JSON.stringify(archived[i],null,2),archived[i].name+'-arsiv.json','application/json;charset=utf-8')}});
+$('promptText').addEventListener('input',()=>{manualPrompt=true;renderPrompt()});$('copyPrompt').addEventListener('click',copyPrompt);$('downloadPrompt').addEventListener('click',()=>downloadText($('promptText').value,current.name+'-gorsel-promptu.txt'));$('resetPrompt').addEventListener('click',()=>{manualPrompt=false;renderPrompt();toast('Prompt karakter özelliklerine göre yenilendi.')});
+$('imageProvider').addEventListener('change',providerControls);$('puterSignIn').addEventListener('click',puterSignIn);$('puterQuickTest').addEventListener('click',async()=>{if(busy)return;busy=true;const btn=$('puterQuickTest');btn.disabled=true;try{await producePuter(true)}catch(e){showStatus('Test sorunu: '+(e?.message||String(e)),'error')}finally{busy=false;btn.disabled=false}});$('puterCopyError').addEventListener('click',async()=>{const t=$('puterErrorText').textContent;try{await navigator.clipboard.writeText(t);toast('Hata ayrıntısı kopyalandı.')}catch{toast('Hata metnine uzun basıp kopyalayabilirsin.')}});$('testConnection').addEventListener('click',testConnection);$('generateImage').addEventListener('click',generateImage);$('downloadImage').addEventListener('click',downloadPhoto);$('goPrompt').addEventListener('click',()=>tab('prompt'));
+document.addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter'&&!['INPUT','TEXTAREA','SELECT'].includes(document.activeElement?.tagName)){e.preventDefault();renewCharacter()}});
+render();providerControls();tab('details');
+</script></body></html>
